@@ -1,0 +1,42 @@
+<div class="accounts" *ngFor="let account of accounts">
+    <div [ngClass]="{'blocked': !account.isActive}">
+        <div class="contract-type">{{account.tariffGroup}}</div>
+        Лицевой счёт № {{account.id}}
+    </div>
+    <div [ngClass]="{'hideLock': account.isActive}">
+        <img class="lock" src="/assets/icon/blocked.svg" alt="заблокирована">
+    </div>
+    <table>
+        <tr>
+            <td class="icon">
+                <img src="/assets/icon/contacts/marker.svg" alt="Адрес">
+            </td>
+            <td class="description">{{account.address}}</td>
+        </tr>
+        <tr>
+            <td class="icon">
+                <img src="/assets/icon/finance/tariff.svg" alt="Название пакета">
+            </td>
+            <td class="description">{{account.name}}</td>
+        </tr>
+        <tr>
+            <td class="icon">
+                <img src="/assets/icon/packages-in-internet/quality-channels.svg" alt="Количество каналов">
+            </td>
+            <td class="description">121 {{account.tariffGroup === 'Телевидение' ? 'канал' : 'Мбит/с'}}
+        </tr>
+        <tr>
+            <td class="icon">
+                <img src="/assets/icon/finance/purse.svg" alt="Стоимость">
+            </td>
+            <td class="description">175 руб/мес.</td>
+        </tr>
+    </table>
+    <app-button *ngIf="account.isActive" [routerLink]="[account.id, 'unblock-service']">
+        Разблокировать услугу
+    </app-button>
+
+    <app-button *ngIf="!account.isActive" (click)="blockedService(account.id)">
+        Заблокировать услугу
+    </app-button>
+</div>

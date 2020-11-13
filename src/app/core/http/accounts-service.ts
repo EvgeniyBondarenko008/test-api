@@ -38,9 +38,9 @@ export class AccountHttpService {
 
     constructor(private http: HttpClient) {}
 
-     /** Получить список всех лицевых счетов + кеширование данных */
+     /** Получить список всех лицевых счетов */
     public getAccounts(): Observable<IAccount[]> {
-        
+        // используется заглушка данных вместо Angular in-memory-web-api или прямого запроса к серверу
         return of(this.accounts);
     }
 
